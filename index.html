@@ -176,16 +176,18 @@
 
 <script src="bootstrap.bundle.min.js"></script>
 <script>
-  window.addEventListener('pageshow', function(event) {
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+
+  window.addEventListener('load', () => {
+    window.scrollTo(0, 0);
+  });
+
+  window.addEventListener('pageshow', (event) => {
     if (event.persisted) {
       window.scrollTo(0, 0);
     }
-  });
-
-  window.addEventListener('load', function() {
-    setTimeout(() => {
-      window.scrollTo(0, 0);
-    }, 0);
   });
 </script>
 </body>
