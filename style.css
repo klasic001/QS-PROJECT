@@ -50,10 +50,11 @@ body {
 }
 
 /* Section Headings */
-h1 {
-  white-space: nowrap;
-  font-size: clamp(1.2rem, 5vw, 3rem);
-  overflow-x: auto;
+h1.display-4 {
+    white-space: nowrap;
+    overflow: visible;
+    text-overflow: clip;
+    font-size: clamp(1.2rem, 5vw, 3rem);
 }
 h2 {
   color: rgb(0, 0, 0);
