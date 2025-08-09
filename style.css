@@ -51,9 +51,9 @@ body {
 
 /* Section Headings */
 h1 {
-  white-space: nowrap;       /* Prevents line breaks */
-  overflow-x: auto;          /* Allows horizontal scroll if needed */
-  text-overflow: ellipsis;   /* Adds ... if text is too long */
+  white-space: nowrap;
+  font-size: clamp(1.2rem, 5vw, 3rem);
+  overflow-x: auto;
 }
 h2 {
   color: rgb(0, 0, 0);
