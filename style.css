@@ -1,0 +1,199 @@
+body {
+  scroll-behavior: smooth;
+}
+
+/* Logo Sizes */
+.logo {
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+.hero-logo {
+  height: 100px;
+  margin-bottom: 20px;
+  border-radius: 50%;
+}
+.footer-logo {
+  height: 50px;
+  margin-bottom: 10px;
+  border-radius: 50%;
+}
+
+/* Hero Gradient Animation */
+.hero {
+  height: 100vh;
+  background: linear-gradient(-45deg, rgb(255, 204, 0), rgb(0, 0, 0), rgb(255, 255, 255));
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Colors */
+.bg-black {
+  background-color: rgb(0, 0, 0) !important;
+}
+.text-white {
+  color: rgb(255, 255, 255) !important;
+}
+
+/* Cards */
+.card {
+  border: none;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Section Headings */
+h2 {
+  color: rgb(0, 0, 0);
+}
+
+.scrollable-dropdown {
+  max-height: 350px; /* keeps it scrollable */
+  overflow-y: auto;
+  background-color: rgb(0,0,0); /* black */
+  color: rgb(255,255,255); /* white text */
+  min-width: 300px;
+}
+
+/* Section titles */
+.scrollable-dropdown strong {
+  color: rgb(255, 204, 8); /* gold */
+  display: block;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+/* Bulleted lists */
+.scrollable-dropdown ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.scrollable-dropdown li {
+  list-style-type: disc;
+  margin-left: 10px;
+}
+
+/* Italic text */
+.scrollable-dropdown em {
+  font-style: italic;
+  color: rgb(255,255,255);
+}
+
+/* Dropdown header */
+.text-gold {
+  color: rgb(255, 204, 8);
+}
+
+/* Hover effect */
+.scrollable-dropdown li:hover {
+  color: rgb(255, 204, 8);
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+#my-text {
+  font-weight: bold;
+}
+
+#spacing-format {
+  font-family: Arial, sans-serif; 
+  line-height: 1.6; 
+  font-size: 16px; 
+  color: #000;
+}
+.brand-bold {
+  font-weight: bold;
+}
+
+
+.map-container {
+  background-color: black;
+  border: 2px solid black;
+  max-width: 400px;
+  transition: all 0.3s ease;
+}
+
+/* Make it glow on hover */
+.map-container:hover {
+  border-color: rgb(255, 204, 8);       /* red border */
+  box-shadow: 0 0 15px rgb(255, 204, 8);
+  transform: scale(1.02);      /* slight zoom */
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 250px;
+  border: none;
+  border-radius: 10px;
+}
+
+
+.about-us-section {
+    padding: 40px;
+    background-color: #ffffff;
+    color: #000000;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+.about-us-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.about-us-section p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.contact-link {
+    color: #FFC107; /* Yellow hover color */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+     display: inline-block;  /* keep links side by side */
+  margin-right: 20px;     /* space between links */
+}
+
+.contact-link:hover {
+    color:black; /* Your second brand color */
+}
+
+.copy-text {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+i {
+    margin-right: 8px;
+}
+
+.contact-section {
+  background-color: #e9ecef;
+}
+
+.container {
+  transition: all 0.3s ease;
+  border: 2px solid transparent; /* keeps space but invisible */
+  border-radius: 10px; 
+}
+
+.container:hover {
+  box-shadow: 0 0 20px 8px rgba(255, 204, 8, 0.05); /* glow shadow only */
+  transform: scale(1.02);
+}
