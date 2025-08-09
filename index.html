@@ -174,13 +174,18 @@
   <p class="mb-0">© 2025 QUICK-STOP CYBER CAFE. All Rights Reserved.</p>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script>
-  window.addEventListener('load', () => window.scrollTo(0, 0));
-  window.addEventListener('pageshow', (event) => {
+<script src="bootstrap.bundle.min.js"></script>
+<script>
+  window.addEventListener('pageshow', function(event) {
     if (event.persisted) {
       window.scrollTo(0, 0);
     }
+  });
+
+  window.addEventListener('load', function() {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+    }, 0);
   });
 </script>
 </body>
