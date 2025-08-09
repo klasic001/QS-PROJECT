@@ -119,6 +119,24 @@ h2 {
   font-size: 16px; 
   color: #000;
 }
+
+/* Reset word spacing for those paragraphs */
+#spacing-format p {
+    text-align: justify;
+    text-justify: inter-word;
+    word-spacing: normal;
+    hyphens: none;           /* Prevents breaking words in the middle */
+    overflow-wrap: normal;   /* Prevents unnecessary wrapping */
+    word-break: normal;      /* Keeps whole words together */
+}
+
+/* Reduce spacing on small screens */
+@media (max-width: 768px) {
+    #spacing-format p {
+        text-align: left; /* Removes big gaps on small screens */
+    }
+}
+
 .brand-bold {
   font-weight: bold;
 }
