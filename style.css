@@ -91,6 +91,7 @@ h2 {
 .scrollable-dropdown em {
   font-style: italic;
   color: rgb(255,255,255);
+
 }
 
 /* Dropdown header */
@@ -105,6 +106,7 @@ h2 {
 
 .italic-text {
     font-style: italic;
+    font-size: 12px;
 }
 
 #my-text {
