@@ -55,7 +55,7 @@ h1.display-4 {
     overflow: visible;
     text-overflow: clip;
     font-size: clamp(1.2rem, 5vw, 3rem);
-    font-weight: 900;
+    font-weight: 800;
   }
 
 h2 {
