@@ -54,7 +54,7 @@ h1.display-4 {
     white-space: nowrap;
     overflow: visible;
     text-overflow: clip;
-    font-size: clamp(1rem, 4vw, 3rem);
+    font-size: clamp(1.2rem, 4vw, 3rem);
     font-weight: 600;
   }
 
