@@ -231,7 +231,7 @@ i {
 /* ===== NEWS TICKER ===== */
 .qs-ticker {
     position: relative;
-  top: 65px;
+  top: 100px;
   width: 100%;
   overflow: hidden;
   background: #FFCC08; /* yellow background */
