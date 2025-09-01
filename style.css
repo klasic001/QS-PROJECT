@@ -305,8 +305,10 @@ i {
 }
 
 .about-iframe {
-  width: 500px;
-  height: 600px;
+  width: 100%;
+  max-width: 500px;
+  height: 70vh;
+  min-height: 300px;
   border: none;
   margin-top: 10px;
 }
@@ -315,4 +317,12 @@ i {
   font-size: 14px;
   color: gray;
   margin-top: 8px;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .about-iframe {
+    max-width: 100%;   /* fills mobile width */
+    height: 400px;     /* smaller height on mobile */
+  }
 }
