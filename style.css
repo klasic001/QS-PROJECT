@@ -281,3 +281,38 @@ i {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
+
+.about-container {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.about-heading {
+  font-size: 18px;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.about-link {
+  color: #0066cc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.about-link:hover {
+  color: #FFCC08; /* hover effect */
+  text-decoration: underline;
+}
+
+.about-iframe {
+  width: 500px;
+  height: 600px;
+  border: none;
+  margin-top: 10px;
+}
+
+.about-note {
+  font-size: 14px;
+  color: gray;
+  margin-top: 8px;
+}
