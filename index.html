@@ -232,51 +232,42 @@
   gtag('config', 'G-N1SJEX52RV');
 </script>
 
-    <!-- PapaParse library -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
-
   <!-- Ticker Script -->
-  <script>
-    // Use your published Google Sheet (CSV format)
-    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFlFQXORAGjI79tqGHvEL4ESe3_HypTZ3xWtZffgJVkCtTla6-IWi3FzzuMxi3eKR30ZHjEKGvYnCl/pub?output=csv";
+   <script>
+  async function loadTicker() {
+    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTFlFQXORAGjI79tqGHvEL4ESe3_HypTZ3xWtZffgJVkCtTla6-IWi3FzzuMxi3eKR30ZHjEKGvYnCl/pub?output=csv");
+    const data = await response.text();
+    const rows = data.split("\n").slice(1);
 
-    const tickerTrack = document.getElementById("qs-ticker-track");
+    const track = document.querySelector(".qs-ticker__track");
+    track.innerHTML = ""; // clear old
 
-    function loadTicker() {
-      fetch(sheetURL)
-        .then(res => res.text())
-        .then(csvText => {
-          Papa.parse(csvText, {
-            header: true,
-            complete: function(results) {
-              const rows = results.data;
+    // Insert all updates from sheet
+    rows.forEach(row => {
+      if (row.trim()) {
+        const item = document.createElement("div");
+        item.className = "qs-ticker__item";
+        item.innerHTML = `<span class="qs-tag">Update</span> ${row}`;
+        track.appendChild(item);
+      }
+    });
 
-              // clear old updates before reloading
-              tickerTrack.innerHTML = "";
+    // --- AUTO REPEAT BASED ON SCREEN WIDTH ---
+    const trackWidth = track.scrollWidth;
+    const screenWidth = window.innerWidth;
 
-              rows.forEach(row => {
-                if (row.Update && row.Update.trim() !== "") {
-                  const item = document.createElement("div");
-                  item.className = "qs-ticker__item";
-                  item.innerHTML = `<span class="qs-tag">Update</span> ${row.Update}`;
-                  tickerTrack.appendChild(item);
-                }
-              });
+    let repeatCount = Math.ceil((screenWidth * 2) / trackWidth); 
+    // ensures ticker is at least 2x screen width
 
-              // duplicate items for smooth infinite loop
-              tickerTrack.innerHTML += tickerTrack.innerHTML;
-            }
-          });
-        })
-        .catch(err => console.error("Error loading sheet:", err));
+    const items = track.innerHTML;
+    for (let i = 0; i < repeatCount; i++) {
+      track.innerHTML += items;
     }
+  }
 
-    // Load ticker on page start
-    loadTicker();
-
-    // Refresh ticker every 2 minutes (120000 ms)
-    setInterval(loadTicker, 120000);
-  </script>
+  loadTicker();
+  setInterval(loadTicker, 120000); // refresh every 2 minutes
+</script>
   
 </body>
 </html>
