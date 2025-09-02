@@ -233,41 +233,106 @@
 </script>
 
   <!-- Ticker Script -->
-   <script>
-  async function loadTicker() {
-    const response = await fetch("https://docs.google.com/spreadsheets/d/e/2PACX-1vTFlFQXORAGjI79tqGHvEL4ESe3_HypTZ3xWtZffgJVkCtTla6-IWi3FzzuMxi3eKR30ZHjEKGvYnCl/pub?output=csv");
-    const data = await response.text();
-    const rows = data.split("\n").slice(1);
+<script>
+(function () {
+  // CONFIG: pixels per second. Lower = slower, higher = faster.
+  const SPEED_PX_PER_SEC = 80;
 
-    const track = document.querySelector(".qs-ticker__track");
-    track.innerHTML = ""; // clear old
+  const SHEET_CSV =
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFlFQXORAGjI79tqGHvEL4ESe3_HypTZ3xWtZffgJVkCtTla6-IWi3FzzuMxi3eKR30ZHjEKGvYnCl/pub?output=csv";
 
-    // Insert all updates from sheet
-    rows.forEach(row => {
-      if (row.trim()) {
-        const item = document.createElement("div");
-        item.className = "qs-ticker__item";
-        item.innerHTML = `<span class="qs-tag">Update</span> ${row}`;
-        track.appendChild(item);
-      }
+  const track = document.querySelector(".qs-ticker__track");
+  if (!track) return;
+
+  async function fetchCSVText(url) {
+    const res = await fetch(url, { cache: "no-store" });
+    return await res.text();
+  }
+
+  function buildItemsFromCSV(csvText) {
+    // Split lines, remove blanks, remove header (first row)
+    const lines = csvText
+      .split("\n")
+      .map(l => l.replace(/\r/g, "").trim())
+      .filter(Boolean);
+
+    const rows = lines.slice(1); // drop header row
+
+    // Build base chunk
+    track.innerHTML = "";
+    rows.forEach(line => {
+      // If your sheet has only one "Update" column, the whole line is the text.
+      // Strip leading/trailing quotes if present.
+      const text = line.replace(/^"?(.*?)"?$/, "$1").trim();
+      if (!text) return;
+
+      const item = document.createElement("div");
+      item.className = "qs-ticker__item";
+      item.innerHTML = `<span class="qs-tag">Update</span> ${text}`;
+      track.appendChild(item);
     });
+  }
 
-    // --- AUTO REPEAT BASED ON SCREEN WIDTH ---
-    const trackWidth = track.scrollWidth;
-    const screenWidth = window.innerWidth;
+  function ensureChunkCoversViewport() {
+    // If base chunk (current track.innerHTML) is narrower than the viewport,
+    // repeat the base chunk until >= viewport width.
+    const baseHTML = track.innerHTML;
+    if (!baseHTML) return;
 
-    let repeatCount = Math.ceil((screenWidth * 2) / trackWidth); 
-    // ensures ticker is at least 2x screen width
+    // Temporarily repeat until we reach at least 100% viewport width
+    while (track.scrollWidth < window.innerWidth) {
+      track.insertAdjacentHTML("beforeend", baseHTML);
+    }
 
-    const items = track.innerHTML;
-    for (let i = 0; i < repeatCount; i++) {
-      track.innerHTML += items;
+    // Now make it seamless by duplicating the whole chunk once
+    const chunkHTML = track.innerHTML;
+    track.innerHTML = chunkHTML + chunkHTML; // exactly two copies
+  }
+
+  function applyDuration() {
+    // Your CSS animates from 0% to -50% (one chunk width).
+    // After we duplicated once, total width = 2 * chunkWidth.
+    // So the distance per cycle = chunkWidth = totalWidth / 2.
+    const totalWidth = track.scrollWidth;
+    const chunkWidth = totalWidth / 2;
+
+    // Time = distance / speed
+    const durationSec = chunkWidth / SPEED_PX_PER_SEC;
+
+    // Only override the duration (keep your animation name "qs-scroll")
+    track.style.animationDuration = durationSec + "s";
+    // Make sure the animation is running
+    track.style.animationPlayState = "running";
+  }
+
+  async function loadTicker() {
+    try {
+      const csv = await fetchCSVText(SHEET_CSV);
+      buildItemsFromCSV(csv);
+      ensureChunkCoversViewport();
+      applyDuration();
+    } catch (e) {
+      // If fetch fails, keep whatever is already showing
+      console.error("Ticker load error:", e);
+      // Ensure existing animation keeps running
+      applyDuration();
     }
   }
 
+  // Initial load
   loadTicker();
-  setInterval(loadTicker, 120000); // refresh every 2 minutes
+
+  // Refresh every 2 minutes
+  setInterval(loadTicker, 120000);
+
+  // Recalculate duration on resize (so speed looks consistent)
+  window.addEventListener("resize", () => {
+    // Only adjust duration; no need to refetch.
+    applyDuration();
+  });
+})();
 </script>
+
   
 </body>
 </html>
