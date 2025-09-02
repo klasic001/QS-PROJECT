@@ -76,19 +76,12 @@
   </div>
 </nav>
 
- <!-- News Ticker -->
-<div class="qs-ticker" role="region" aria-label="Latest update from Quick-Stop Cyber Cafe">
-  <div class="qs-ticker__track">
-    <div class="qs-ticker__item">
-      <span class="qs-tag">Update</span>
-      The University of Calabar is currently on holiday break; therefore, our opening hours may vary. In the meantime, you can reach us via WhatsApp, phone call, or email. Thank you for your understanding.
-    </div>
-    <div class="qs-ticker__item" aria-hidden="true">
-      <span class="qs-tag">Update</span>
-      The University of Calabar is currently on holiday break; therefore, our opening hours may vary. In the meantime, you can reach us via WhatsApp, phone call, or email. Thank you for your understanding.
+  <!-- News Ticker -->
+  <div class="qs-ticker" role="region" aria-label="Latest update from Quick-Stop Cyber Cafe">
+    <div class="qs-ticker__track" id="qs-ticker-track">
+      <!-- Updates will be injected here -->
     </div>
   </div>
-</div>
  
 <!-- Hero -->
 <header class="hero d-flex align-items-center justify-content-center text-center text-white">
@@ -238,5 +231,52 @@
 
   gtag('config', 'G-N1SJEX52RV');
 </script>
+
+    <!-- PapaParse library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+  <!-- Ticker Script -->
+  <script>
+    // Use your published Google Sheet (CSV format)
+    const sheetURL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFlFQXORAGjI79tqGHvEL4ESe3_HypTZ3xWtZffgJVkCtTla6-IWi3FzzuMxi3eKR30ZHjEKGvYnCl/pub?output=csv";
+
+    const tickerTrack = document.getElementById("qs-ticker-track");
+
+    function loadTicker() {
+      fetch(sheetURL)
+        .then(res => res.text())
+        .then(csvText => {
+          Papa.parse(csvText, {
+            header: true,
+            complete: function(results) {
+              const rows = results.data;
+
+              // clear old updates before reloading
+              tickerTrack.innerHTML = "";
+
+              rows.forEach(row => {
+                if (row.Update && row.Update.trim() !== "") {
+                  const item = document.createElement("div");
+                  item.className = "qs-ticker__item";
+                  item.innerHTML = `<span class="qs-tag">Update</span> ${row.Update}`;
+                  tickerTrack.appendChild(item);
+                }
+              });
+
+              // duplicate items for smooth infinite loop
+              tickerTrack.innerHTML += tickerTrack.innerHTML;
+            }
+          });
+        })
+        .catch(err => console.error("Error loading sheet:", err));
+    }
+
+    // Load ticker on page start
+    loadTicker();
+
+    // Refresh ticker every 2 minutes (120000 ms)
+    setInterval(loadTicker, 120000);
+  </script>
+  
 </body>
 </html>
