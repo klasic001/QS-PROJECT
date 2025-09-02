@@ -246,7 +246,7 @@ i {
 .qs-ticker__track {
   display: flex;
   min-width: 200%;
-  animation: qs-scroll 15s linear infinite;
+  animation: qs-scroll 25s linear infinite;
   will-change: transform;
   width: max-content;
 }
