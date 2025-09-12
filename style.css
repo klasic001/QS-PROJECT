@@ -326,3 +326,24 @@ i {
     height: 400px;     /* smaller height on mobile */
   }
 }
+
+
+.social-links {
+  text-align: center;   /* centers icons */
+  margin: 20px 0;       /* spacing before footer */
+}
+
+.social-links a {
+  margin: 0 15px;       /* spacing between icons */
+  color: #333;          /* default color */
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.social-links a:hover {
+  color: #1877f2; /* Facebook blue */
+}
+
+.social-links a:nth-child(2):hover {
+  color: #000000; /* TikTok black */
+}
