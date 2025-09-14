@@ -365,3 +365,35 @@ i {
 .social-links a:nth-child(2):hover {
   color: #000000; /* TikTok black */
 }
+
+.back-to-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  background: #FFCC08; /* yellow */ 
+  color: #111;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease; /* smooth fade */
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.back-to-top:hover {
+  box-shadow: 0 10px 24px rgba(0,0,0,0.25);
+}
+
+html { scroll-behavior: smooth; }
