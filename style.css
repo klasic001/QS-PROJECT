@@ -13,13 +13,80 @@ body {
   height: 100px;
   margin-bottom: 20px;
   border-radius: 50%;
-}
-.footer-logo {
-  height: 50px;
-  margin-bottom: 10px;
-  border-radius: 50%;
+.footer {
+  background-color: rgb(0, 0, 0); /* fully black background */
+  color: #FFFFFF;
+  padding: 20px 10px;
+  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
+.footer-codelab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  opacity: 0.75; /* slightly transparent */
+  transform: scale(0.85);
+}
+
+.codelab-inline {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.codelab-logo {
+  height: 30px;
+  width: auto;
+  opacity: 0.85;
+}
+
+.brand-name {
+  font-weight: 700;
+  color: #1DAEFF; /* bright blue */
+  font-size: 0.9rem;
+}
+
+.slogan {
+  font-size: 0.75rem;
+  color: #FFFFFF;
+  margin: 0;
+  font-style: italic;
+  line-height: 1; /* extremely tight */
+}
+
+.footer-quickstop {
+  display: flex;
+  flex-direction: column; /* vertical stacking */
+  align-items: center;    /* always centered */
+  margin-top: 15px;
+  gap: 5px;
+}
+
+.footer-logo {
+  height: 50px;
+  border-radius: 50%;
+  opacity: 1;
+}
+
+copyright {
+  font-size: 0.85rem;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+/* Force navbar toggler to always stay at the top-right */
+.navbar .navbar-toggler {
+  position: absolute;
+  top: 0.5rem;   /* distance from the top */
+  right: 1rem;   /* distance from the right */
+  margin: 0;
+  padding: 0.25rem 0.5rem;
+  z-index: 1050; /* ensures it's above other content */
+}
+
+  
 /* Hero Gradient Animation */
 .hero {
   height: 100vh;
@@ -247,25 +314,53 @@ i {
 
 /* ===== NEWS TICKER ===== */
 .qs-ticker {
-    position: relative;
-  top: 100px;
+  position: relative;
+  top: 60px;
   width: 100%;
+  height: 40px;
   overflow: hidden;
-  background: #FFCC08; /* yellow background */
-  color: #000;         /* black text */
-  border-top: 1px solid rgba(0,0,0,.2);
-  border-bottom: 1px solid rgba(0,0,0,.2);
+  background: #e6b800;
+  color: #000;
+  border-top: none;
+
+  /* Hard stops for solid color segments */
+  border-bottom: 5px solid transparent;
+  border-image: linear-gradient(
+    to right,
+    white 0%,
+    white 25%,
+    #aaa 25%,
+    #aaa 50%,
+    #444 50%,
+    #444 75%,
+    black 75%,
+    black 100%
+  ) 1;
+
+  display: flex;
+  align-items: center;
   font-size: 1rem;
-   font-weight: bold;
-  padding: .5rem 0;
+  font-weight: bold;
+}
+
+.qs-ticker__label {
+  flex: 0 0 auto;
+  background: #e6b800;
+  color: #000;
+  padding: 0 1rem;
+  border-right: 3px solid #1A1A1A;  /* bold black vertical separator */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  z-index: 2;                    /* sits on top */
+  font-weight: 900;
 }
 
 .qs-ticker__track {
-  display: flex;
-  min-width: 200%;
-  animation: qs-scroll 25s linear infinite;
+  display: inline-flex;
+  white-space: nowrap;
   will-change: transform;
-  width: max-content;
+  animation: qs-scroll linear infinite;
 }
 
 .qs-ticker__item {
@@ -274,29 +369,18 @@ i {
   white-space: nowrap;
   padding: 0 2rem;
   flex: 0 0 auto;
-  color: #000;
-  padding-right: 3rem;
-}
-
-.qs-tag {
-  background: #000;  /* black box */
-  color: #fff;       /* white text */
-  font-size: .75rem;
-   font-weight: bold;
-  padding: .15rem .5rem;
-  border-radius: .35rem;
-  margin-right: .5rem;
-  text-transform: uppercase;
-  letter-spacing: .02em;
+  color: #111111;
+  font-weight: 800;
 }
 
 .qs-ticker:hover .qs-ticker__track {
   animation-play-state: paused;
 }
 
+/* Scroll animation: move items across until they vanish behind the label */
 @keyframes qs-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+  0%   { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
 }
 
 .about-container {
@@ -344,6 +428,14 @@ i {
     height: 400px;     /* smaller height on mobile */
   }
 }
+
+/* For bigger screens (PC) */
+@media (min-width: 992px) {
+  .about-image {
+    max-height: 50vh; /* reduce height on large screens */
+  }
+}
+
 
 
 .social-links {
