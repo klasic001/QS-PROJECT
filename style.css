@@ -1,6 +1,6 @@
 body {
   scroll-behavior: smooth;
-  padding-top: 10px;
+  padding-top: 20px; /* fixed from Code 2 */
 }
 
 /* Logo Sizes */
@@ -13,6 +13,9 @@ body {
   height: 100px;
   margin-bottom: 20px;
   border-radius: 50%;
+} /* ✅ fixed missing bracket */
+
+/* Footer */
 .footer {
   background-color: rgb(0, 0, 0); /* fully black background */
   color: #FFFFFF;
@@ -86,7 +89,6 @@ copyright {
   z-index: 1050; /* ensures it's above other content */
 }
 
-  
 /* Hero Gradient Animation */
 .hero {
   height: 100vh;
@@ -119,12 +121,12 @@ copyright {
 
 /* Section Headings */
 h1.display-4 {
-    white-space: nowrap;
-    overflow: visible;
-    text-overflow: clip;
-    font-size: clamp(1rem, 4vw, 3rem);
-    font-weight: 600;
-  }
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
+  font-size: clamp(1rem, 4vw, 3rem); /* keep Code 1 style */
+  font-weight: 600; /* keep Code 1 weight */
+}
 
 h2 {
   color: rgb(0, 0, 0);
@@ -161,7 +163,6 @@ h2 {
 .scrollable-dropdown em {
   font-style: italic;
   color: rgb(255,255,255);
-
 }
 
 /* Dropdown header */
@@ -175,8 +176,8 @@ h2 {
 }
 
 .italic-text {
-    font-style: italic;
-    font-size: 12px;
+  font-style: italic;
+  font-size: 12px;
 }
 
 #my-text {
@@ -192,25 +193,24 @@ h2 {
 
 /* Reset word spacing for those paragraphs */
 #spacing-format p {
-    text-align: justify;
-    text-justify: inter-word;
-    word-spacing: normal;
-    hyphens: none;           /* Prevents breaking words in the middle */
-    overflow-wrap: normal;   /* Prevents unnecessary wrapping */
-    word-break: normal;      /* Keeps whole words together */
+  text-align: justify;
+  text-justify: inter-word;
+  word-spacing: normal;
+  hyphens: none;           /* Prevents breaking words in the middle */
+  overflow-wrap: normal;   /* Prevents unnecessary wrapping */
+  word-break: normal;      /* Keeps whole words together */
 }
 
 /* Reduce spacing on small screens */
 @media (max-width: 768px) {
-    #spacing-format p {
-        text-align: left; /* Removes big gaps on small screens */
-    }
+  #spacing-format p {
+    text-align: left; /* Removes big gaps on small screens */
+  }
 }
 
 .brand-bold {
   font-weight: bold;
 }
-
 
 #map-container {
   background-color: white;
@@ -250,50 +250,49 @@ h2 {
   }
 }
 
-
 .about-us-section {
-    padding: 40px;
-    background-color: #ffffff;
-    color: #000000;
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+  padding: 40px;
+  background-color: #ffffff;
+  color: #000000;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
 }
 
 .about-us-section h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
-    font-weight: bold;
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: bold;
 }
 
 .about-us-section p {
-    margin-bottom: 20px;
-    text-align: justify;
+  margin-bottom: 20px;
+  text-align: justify;
 }
 
 .bold-text {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .contact-link {
-    color: #FFC107; /* Yellow hover color */
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-     display: inline-block;  /* keep links side by side */
+  color: #FFC107; /* Yellow hover color */
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+  display: inline-block;  /* keep links side by side */
   margin-right: 20px;     /* space between links */
 }
 
 .contact-link:hover {
-    color:black; /* Your second brand color */
+  color:black; /* Your second brand color */
 }
 
 .copy-text {
-    font-size: 0.9rem;
-    color: #ccc;
+  font-size: 0.9rem;
+  color: #ccc;
 }
 
 i {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .contact-section {
@@ -310,7 +309,6 @@ i {
   box-shadow: 0 0 20px 8px rgba(255, 204, 8, 0.05); /* glow shadow only */
   transform: scale(1.02);
 }
-
 
 /* ===== NEWS TICKER ===== */
 .qs-ticker {
@@ -435,8 +433,6 @@ i {
     max-height: 50vh; /* reduce height on large screens */
   }
 }
-
-
 
 .social-links {
   text-align: center;   /* centers icons */
